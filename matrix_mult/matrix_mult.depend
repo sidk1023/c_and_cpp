@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1594811303 source:c:\users\skoli\documents\ccodes\matrix_mult\main.c
+	<stdio.h>
+	<stdlib.h>
+
