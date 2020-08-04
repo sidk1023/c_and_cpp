@@ -81,6 +81,12 @@ void Delete(Node** head_ref, int n)//delete a node at a given index
     delete temp->next;//we delete the nth index node as per our instruction
     temp->next = node->next;//the node preceeding the previous node points to our new node, thus the deleted node is deleted and skipped over
 }
+
+
+
+/////////////////////////////
+
+
 void Reverse(Node** head_ref)//reverse a linked list using iterative approach
 {
     Node *current, *next, *prev;//these are three temporary nodes used for reversing
