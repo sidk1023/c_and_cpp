@@ -55,12 +55,12 @@ void Delete(Node** head_ref, int n)
     }
     if(temp==NULL||temp->next==NULL)
     {
-        cout<<"error";
+        cout<<"error, index out of range of liked list";
         return;
     }
     Node* node = new Node();
     node->next = temp->next->next;
-    delete node;
+    delete temp->next;
     temp->next = node->next;
 }
 void Reverse(Node** head_ref)
@@ -78,6 +78,22 @@ void Reverse(Node** head_ref)
     (*head_ref)=prev;
 
 }
+void recurse_reverse(Node* p, Node** head_ref)
+
+{
+
+    if(p->next==NULL)
+        {
+            *head_ref = p;
+            return;
+    }
+    recurse_reverse(p->next, head_ref);
+    Node* q = p->next;
+    q->next = p;
+    p->next = NULL;
+
+
+}
 void Print(Node* node)
 {
     while (node!= NULL)
@@ -87,15 +103,39 @@ void Print(Node* node)
     }
 
 }
+void Recurse_print(Node* temp)
+{
+
+    if (temp==NULL)
+    return;
+    cout<<" "<<temp->data;
+    Recurse_print(temp->next);
+
+}
+void Reverse_print(Node* temp)
+{
+
+    if (temp==NULL)
+    return;
+    Reverse_print(temp->next);
+    cout<<" "<<temp->data;
+
+
+}
 int main()
 {
     Node* head = NULL;
-    push(&head, 3);
-    push(&head,2);
-    append(&head, 5);
-    Reverse(&head);
-    Reverse(&head);
+    append(&head, 3);//3
+    append(&head,2);//3,2
+    append(&head, 5);//3,2,5
 
-    Print(head);
+    Reverse(&head);//
+    Print(head);//5,2,3
+    cout<<endl;
+    Reverse_print(head);//3,2,5, but list is still 5,2,3
+    cout<<endl;
+
+     recurse_reverse(head,&head);//5,2,3
+     Print(head);
     return 0;
 }
