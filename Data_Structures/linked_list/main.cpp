@@ -1,11 +1,11 @@
 //this is a reference for some common functions with linked list implementation in c++. if you are using c,
 //please note that in every place we declare a node, we must use "struct Node" in place if "Node". this should be applied in every function
-//declaration also. cout function may not work depending on your compiler so use printf.
-
+//declaration also. cout function may not work depending on your compiler so use printf. 
+//functions include: insert at start, after a give node, at end. reversing iterative and recursive. print recursive and iterative.
 
 #include <iostream>
 using namespace std;
-struct Node//basic structure of our node.
+struct Node//basic structure of our node. 
 {
     int data;
     Node* next;//the link. if you are using c, please use "struct Node* next;" instead
@@ -15,7 +15,7 @@ struct Node//basic structure of our node.
 //////////////////////////////////////////////////////////////////////////////////////////////
 void push(Node** head_ref, int new_data)//a function to insertnode at start of linked list. we pass in adress of head node and value of new data
 {
-    Node* new_node = new Node();//create a new node. if you are using c, struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    Node* new_node = new Node();//create a new node. if you are using c, struct Node* new_node = (struct Node*) malloc(sizeof(struct Node)); 
     new_node->data = new_data;//the data of new node is assigned
     new_node->next = (*head_ref);//link the new node to the head node(so new node points to head node)
     (*head_ref) = new_node;//new node becomes the head node. we pass in the head node by reference
@@ -38,7 +38,7 @@ void append(Node** head_ref, int new_data)//append a node to the end of the list
 {
     Node* new_node = new Node();
     new_node->data = new_data;
-    Node *traverser = (*head_ref);//create a temporary node originally pointed at our linked list's
+    Node *traverser = (*head_ref);//create a temporary node originally pointed at our linked list's 
                                   //head node, this node will be used to traverse the linked list to the end
     new_node->next = NULL;//terminate the linked list(as our new node is the last node in our list)
     if((*head_ref)==NULL)//if the list is empty
@@ -81,6 +81,12 @@ void Delete(Node** head_ref, int n)//delete a node at a given index
     delete temp->next;//we delete the nth index node as per our instruction
     temp->next = node->next;//the node preceeding the previous node points to our new node, thus the deleted node is deleted and skipped over
 }
+
+
+
+/////////////////////////////
+
+
 void Reverse(Node** head_ref)//reverse a linked list using iterative approach
 {
     Node *current, *next, *prev;//these are three temporary nodes used for reversing
@@ -88,9 +94,9 @@ void Reverse(Node** head_ref)//reverse a linked list using iterative approach
     prev = NULL;//we assign the previous to NULL, so when the first node is reversed we can assign it to NULL and terminate it
     while(current!=NULL)//we traverse the list from first node to last
     {
-        next = current->next;//the "next" node points to the node after current. this is so that when we reverse the direction of the current node,
-        //the address of the next node is not lost. we save it as "next"
-
+        next = current->next;//the "next" node points to the node after current. this is so that when we reverse the direction of the current node, 
+        //the address of the next node is not lost. we save it as "next" 
+       
         current->next = prev;//the current node points to the previous node(we reverse the node). in the first iteration the first node is pointed to null.
         prev= current;//for the next iteration, the previous node becomes the current node in this iteration
         current = next;//for the next iteration, the current node becomes the next node(refer to step one in this loop)
@@ -100,9 +106,11 @@ void Reverse(Node** head_ref)//reverse a linked list using iterative approach
                      //head->first_>second->third->Null. on reversal NULL<-first<- second<- third<-head
 
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-void recurse_reverse(Node* p, Node** head_ref) //reverse using recursion. very imp interview question//we pass in head node and also the head node by reference.
+void recurse_reverse(Node* p, Node** head_ref)//reverse using recursion. very imp interview question
+    //we pass in head node and also the head node by reference.
 {
     if(p->next==NULL)//exit case: if p reaches the end of the list
         {
@@ -112,7 +120,7 @@ void recurse_reverse(Node* p, Node** head_ref) //reverse using recursion. very i
     recurse_reverse(p->next, head_ref);//recursive function call
     Node* q = p->next;// create a new node sharing the same adress as the node after p;
     q->next = p;//the reversal;
-    p->next = NULL;//point p to null. by the end of the recursive process, this null will reach the first node and point it to null
+    p->next = NULL;//point p to null. by the end of the recursive process, this null will reach the first node and point it to null 
 
 }
 
